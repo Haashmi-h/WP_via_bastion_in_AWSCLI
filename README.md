@@ -5,7 +5,9 @@
 Hi Everyone,
 <br />
 
-This is a demonstration of deploying Wordpress website using bastion server setup via AWS-CLI method and some AWS features.<br />
+This is a demonstration of deploying Wordpress website using bastion host setup via AWS-CLI method and some AWS features.<br />
+A bastion host is a server provide secure access to Linux instances located in the private and public subnets of a virtual private cloud (VPC).<br />
+It is sometimes called a jump box or jump server. 
 In live production environment, this will be done using terraform, bash etc..  <br />
 But we are implementing this setup via AWSCLI for learning purpose.
 
@@ -570,6 +572,7 @@ Added necessary tags.
 [root@ip-172-31-35-96 ~]# aws ec2 create-tags --resources i-08f85085c52d8b082 --tags Key=Name,Value=backend-server
 ```
 
+Please note down the instance IDs from the output of commands given above.
 All the instances details can be viewed from following commands with instance ID.
 
  `[root@ip-172-31-35-96 ~]# aws ec2 describe-instances --instance-ids i-0d9a9c897fd542ab8`
@@ -608,6 +611,7 @@ ip-172-16-15-121.us-east-2.compute.internal
 ```
 **b)**
 Logged in to "frontend-server" from  "bastions-server" using "newkey.pem" .
+For that, copied the newkey.pem from local machine to "bastions-server" and updated permissions of key file to 400.
 ```sh 
 [root@bastion ~]# ssh -i newkey.pem ec2-user@172.16.111.219
 The authenticity of host '172.16.111.219 (172.16.111.219)' can't be established.
