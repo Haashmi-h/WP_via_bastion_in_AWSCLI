@@ -1,2 +1,2 @@
-# WP_via_bastion_in_AWSCLI
+# Wordpress installation using bastion server setup via AWS-CLI
 This is a demonstration of hosting Wordpress website using bastion server setup via AWS-CLI method
