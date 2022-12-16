@@ -23,19 +23,14 @@ This task basically requires following:
 <br />
 I have logged in to AWSCLI using the following command with an IAM user using it's Access Key ID and Secret Access Key as login credentials.
 
-> [root@ip-172-31-35-96 ~]# aws configure 
->  
-> AWS Access Key ID [None]: XXXXXXXXXXXX
-> 
-> AWS Secret Access Key [None]: XXXXXXXXXXXX
-> 
-> Default region name [None]: us-east-2
-> 
-> Default output format [None]: json
-> 
-> The region Ohio "us-east2" is chosen for implementing this setup.
-> 
-
+```sh 
+[root@ip-172-31-35-96 ~]# aws configure
+AWS Access Key ID [None]: XXXXXXXXXXXX
+AWS Secret Access Key [None]: XXXXXXXXXXXX
+Default region name [None]: us-east-2
+Default output format [None]: json
+```
+ 
 <br />
 
 #### 1. VPC creation:
