@@ -1,14 +1,15 @@
 # Wordpress installation using bastion server setup - AWS CLI
 ***
-
+<br />
+ 
 Hi Everyone,
+<br />
 
 Here, I'm sharing a documentation of using Amazon EC2 features from which we can deploy a WordPress blog, which is not typical with a traditional hosting service.
 In the production environment, this will be done using terraform, bash etc..
 This is a demonstration of hosting Wordpress website using bastion server setup via AWS-CLI method for learning purpose.
 
-
-
+ <br />
 This task basically requires following:
 
 - ***IAM user having EC2FullAccess, VPCFullAccess***
@@ -17,8 +18,9 @@ This task basically requires following:
 - ***Elastic IP address***
 - ***SSH key pair and 3 security groups***
 - ***3 EC2 instances***
-
-
+ <br />
+  <br />
+<br />
 I have logged in to AWSCLI using the following command with an IAM user using it's Access Key ID and Secret Access Key as login credentials.
 
 > [root@ip-172-31-35-96 ~]# aws configure 
@@ -34,7 +36,7 @@ I have logged in to AWSCLI using the following command with an IAM user using it
 > The region Ohio "us-east2" is chosen for implementing this setup.
 > 
 
-
+<br />
 
 #### 1. VPC creation:
 
@@ -51,7 +53,7 @@ Assigned a tag for this VPC as "webserver-vpc"
 [root@ip-172-31-35-96 ~]# aws ec2 create-tags  --resources vpc-0cb6d74973d96e7f9 --tags Key=Name,Value=webserver-vpc
 [root@ip-172-31-35-96 ~]#
 ```
-
+<br />
 
 #### 2. Defining  the necessary SUBNETs:
 
@@ -177,7 +179,7 @@ Here are the complete subnet details defined from the VPC "vpc-0a6f9f2d328928671
 [root@ip-172-31-35-96 ~]#
 ```
 
-
+<br />
 #### 3. INTERNET GATEWAY:
 
 It is created to avail internet-routable traffics to the VPC .
@@ -198,7 +200,7 @@ Attached this Internet gateway  to VPC using following command with VPC id and  
 [root@ip-172-31-35-96 ~]#
 ```
 
-
+<br />
 #### 4. NAT GATEWAY:
 
 A NAT gateway is needed here so that instance created in the private subnet can connect to services outside the VPC; we need this to setup private database server here.
@@ -245,6 +247,7 @@ Assigned a tag.
 [root@ip-172-31-35-96 ~]#
 ```
 
+<br />
 #### 5. ROUTETABLEs.
 
 The route tables are needed to determine where network traffic from our subnet or gateway is directed.
@@ -427,7 +430,7 @@ Complete routes information on this "webserver-rtb-private".
 }
 [root@ip-172-31-35-96 ~]#
 ```
-
+<br />
 
 #### 6. SECURITY GROUPS
 
@@ -491,7 +494,7 @@ Allow remote mysql access from "sg-frontend"
 [root@ip-172-31-35-96 ~]# aws ec2 authorize-security-group-ingress --group-id sg-0ffc21bf882a0131d --protocol tcp --port 3306 --source-gr oup sg-0ad3a3a130323d491
 [root@ip-172-31-35-96 ~]#
 ```
-
+<br />
 #### 7. Keypair.
 Ceated a keypair and assigned readonly permission for the user.
 ```sh 
@@ -501,7 +504,7 @@ Ceated a keypair and assigned readonly permission for the user.
 [root@ip-172-31-35-96 ~]# chmod 400 newkey.pem
 [root@ip-172-31-35-96 ~]#
 ```
-
+<br />
 #### 8. AMI information.
 We need AMI ID for creating EC2 instances via AWS-CLI.
 Here, instances will be created using same  AmazonLinux AMI on my machine. So, AMI ID from my device can be obtained by executing the curl command on  meta-data url as given below:
@@ -511,7 +514,7 @@ ami-0beaa649c482330f7
 [root@ip-172-31-35-96 ~]#
 ```
 
-
+<br />
 #### 9. EC2 instance
 
 
@@ -574,7 +577,7 @@ All the instances details can be viewed from following commands with instance ID
 `[root@ip-172-31-35-96 ~]# aws ec2 describe-instances --instance-ids i-08f85085c52d8b082`
 
 
-
+<br />
 
 #### 10. Deploying WORDPRESS website through bastion-server setup
 We will be connecting both webserver and database server through this server.
@@ -705,14 +708,19 @@ From "frontend-server":
 The website accessed with Public DNS name:
 <img width="899" alt="wp website" src="https://user-images.githubusercontent.com/117455666/208154876-6a5d0787-0b0d-4925-b830-8785ef5ef6f8.png">
 
+<br />
+<br />
 
-##### Additional info: #####
+***Additional info:***
 
-We can add the public IP address of  "frontend-server" as an A record for any newly created subdomain on live domain or any new domain via Route53. Then update "WP_Home" and "siteurl" entries to the domain entry in the wordpress configuration file.
+We can add the public IP address of  "frontend-server" as an A record for any newly created subdomain on live domain or any new domain via Route53.<br /> 
+Then update "WP_Home" and "siteurl" entries to the domain entry in the wordpress configuration file.<br />
 For example, here I've pointed wordpress.haashdev.tech to the server's public IP, so that the URL part website will be accessed as follows:
 ![image](https://user-images.githubusercontent.com/117455666/208155072-13bdbe8d-27be-41d5-920b-551de8aaf6da.png)
 
-
+<br />
+<br />
+<br />
 
 ***Thank You***
 
