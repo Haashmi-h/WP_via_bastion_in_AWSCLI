@@ -6,7 +6,7 @@ Hi Everyone,
 <br />
 
 This is a demonstration of deploying Wordpress website using bastion host setup via AWS-CLI method and some AWS features.<br />
-A bastion host is a server provide secure access to Linux instances located in the private and public subnets of a virtual private cloud (VPC).<br />
+A bastion host is a server that provide secure access to Linux instances located in the private and public subnets of a virtual private cloud (VPC).<br />
 It is sometimes called a jump box or jump server. 
 In live production environment, this will be done using terraform, bash etc..  <br />
 But we are implementing this setup via AWSCLI for learning purpose.
