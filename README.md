@@ -698,11 +698,13 @@ MariaDB [(none)]>
 Logged in back to the "frontend-server" to update these database name, database username, database password entries and the private IP of "backend-server" as "HOST" entry in "wp-config.php" file. Then restarted webserver to reflect the changes.
 
 Thus, successfully completed the wordpress installation.
-It can be done by accessing either public DNS name or public IP address. The public DNS name and public IP address of the "frontend-server" can be found using any of the following commands
-From localmachine:
+It can be done by accessing either public DNS name or public IP address. The public DNS name and public IP address of the "frontend-server" can be found using any of the following commands.
 ```sh 
+From localmachine:
 [root@ip-172-31-35-96 ~]# aws ec2 describe-instances --instance-ids i-0070582cf4d616b2a
-From "frontend-server":
+
+
+From "frontend-server" using Instance metadata:
 [root@frontend ~]$curl -s http://169.254.169.254/latest/meta-data/public-hostname
 [root@frontend ~]$curl http://169.254.169.254/latest/meta-data/public-ipv4
 ```
