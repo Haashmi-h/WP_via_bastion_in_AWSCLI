@@ -717,9 +717,9 @@ The website accessed with Public DNS name:
 
 ***Additional info:***
 
-We can add the public IP address of  "frontend-server" as an A record for any newly created subdomain on live domain or any new domain via Route53.<br /> 
-Then update "WP_Home" and "siteurl" entries to the domain entry in the wordpress configuration file.<br />
-For example, here I've pointed wordpress.haashdev.tech to the server's public IP, so that the URL part website will be accessed as follows:
+*We can add the public IP address of  "frontend-server" as an A record for any newly created subdomain on live domain or any new domain via Route53. 
+Then update "WP_Home" and "siteurl" entries to the domain entry in the wordpress configuration file. 
+For example, here I've pointed wordpress.haashdev.tech to the server's public IP, so that the URL part website will be accessed as follows:*
 ![image](https://user-images.githubusercontent.com/117455666/208155072-13bdbe8d-27be-41d5-920b-551de8aaf6da.png)
 
 <br />
