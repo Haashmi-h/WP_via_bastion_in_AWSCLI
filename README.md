@@ -5,9 +5,10 @@
 Hi Everyone,
 <br />
 
-Here, I'm sharing a documentation of using Amazon EC2 features from which we can deploy a WordPress blog, which is not typical with a traditional hosting service.
-In the production environment, this will be done using terraform, bash etc..
-This is a demonstration of hosting Wordpress website using bastion server setup via AWS-CLI method for learning purpose.
+This is a demonstration of deploying Wordpress website using bastion server setup via AWS-CLI method and some AWS features.<br />
+In live production environment, this will be done using terraform, bash etc..  <br />
+But we are implementing this setup via AWSCLI for learning purpose.
+
 
  <br />
 This task basically requires following:
@@ -175,6 +176,7 @@ Here are the complete subnet details defined from the VPC "vpc-0a6f9f2d328928671
 ```
 
 <br />
+
 #### 3. INTERNET GATEWAY:
 
 It is created to avail internet-routable traffics to the VPC .
@@ -196,6 +198,7 @@ Attached this Internet gateway  to VPC using following command with VPC id and  
 ```
 
 <br />
+
 #### 4. NAT GATEWAY:
 
 A NAT gateway is needed here so that instance created in the private subnet can connect to services outside the VPC; we need this to setup private database server here.
@@ -243,6 +246,7 @@ Assigned a tag.
 ```
 
 <br />
+
 #### 5. ROUTETABLEs.
 
 The route tables are needed to determine where network traffic from our subnet or gateway is directed.
@@ -490,6 +494,7 @@ Allow remote mysql access from "sg-frontend"
 [root@ip-172-31-35-96 ~]#
 ```
 <br />
+
 #### 7. Keypair.
 Ceated a keypair and assigned readonly permission for the user.
 ```sh 
@@ -500,6 +505,7 @@ Ceated a keypair and assigned readonly permission for the user.
 [root@ip-172-31-35-96 ~]#
 ```
 <br />
+
 #### 8. AMI information.
 We need AMI ID for creating EC2 instances via AWS-CLI.
 Here, instances will be created using same  AmazonLinux AMI on my machine. So, AMI ID from my device can be obtained by executing the curl command on  meta-data url as given below:
@@ -510,6 +516,7 @@ ami-0beaa649c482330f7
 ```
 
 <br />
+
 #### 9. EC2 instance
 
 
