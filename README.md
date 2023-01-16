@@ -219,7 +219,7 @@ For that, the following command is used to allocate the elastic IP address.
 [root@ip-172-31-35-96 ~]#
 ```
 An elastic IP is created on the region "us-east-2".
-Allocation ID from the above results along with private subnet ID is needed to create a NAT gateway.
+Allocation ID from the above results along with a public subnet ID is needed to create a NAT gateway.
 
 Created NAT
 ```sh 
